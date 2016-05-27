@@ -1,31 +1,36 @@
 {
+  "variables" : {
+      "latest_iso_url": null,
+      "latest_iso_checksum": null
+  },
   "builders": [
     {
-      "boot_wait": "30s",
       "boot_command": [
-        "echo http://{{ .HTTPIP }}:{{ .HTTPPort}} > .packer_http<enter>",
+        "echo http://{{ .HTTPIP }}:{{ .HTTPPort }} > .packer_http<enter>",
         "mkdir -m 0700 .ssh<enter>",
         "curl $(cat .packer_http)/install_rsa.pub > .ssh/authorized_keys<enter>",
         "start sshd<enter>"
       ],
+      "boot_wait": "30s",
+
       "http_directory": "scripts",
-      "iso_checksum_type": "sha256",
-      "shutdown_command": "shutdown -h now",
-      "ssh_key_path": "./scripts/install_rsa",
-      "ssh_port": 22,
-      "ssh_username": "root",
-      "type": "virtualbox-iso",
-      "iso_url": "https://nixos.org/releases/nixos/15.09/nixos-15.09.1076.9220f03/nixos-minimal-15.09.1076.9220f03-x86_64-linux.iso",
-      "iso_checksum": "77bd77859f937da23e9a45ccf50410ae32a41400e3b9ca3a8de212821b641c88",
+
       "guest_additions_mode": "disable",
       "guest_os_type": "Linux_64",
+
+      "iso_url": "{{user `latest_iso_url`}}",
+      "iso_checksum": "{{user `latest_iso_checksum`}}",
+      "iso_checksum_type": "sha256",
+
+      "shutdown_command": "shutdown -h now",
+
+      "ssh_private_key_file": "./scripts/install_rsa",
+      "ssh_port": 22,
+      "ssh_username": "root",
+
+      "type": "virtualbox-iso",
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "1024"
-        ]
+        ["modifyvm", "{{ .Name }}", "--memory", "1024"]
       ]
     }
   ],
@@ -46,17 +51,17 @@
         "only": [
           "virtualbox-iso"
         ],
-        "artifact": "zimbatm/nixos-15.09-x86_64",
+        "artifact": "rodamber/nixos-16.03-x86_64",
         "artifact_type": "vagrant.box",
         "metadata": {
           "provider": "virtualbox",
-          "description": "A minimal NixOS build based on the nixos-minimal-15.09.1076.9220f03-x86_64-linux.iso.\n\nSee https://github.com/zimbatm/nixbox for project details.\n"
+            "description": "A minimal NixOS build based on the latest-iso-minimal-x86_64-linux iso.\n\nSee https://github.com/rodamber/nixbox for project details.\n"
         }
       }
     ]
   ],
   "push": {
-    "name": "zimbatm/nixos-x86_64",
+    "name": "rodamber/nixos-x86_64",
     "vcs": true
   }
 }
