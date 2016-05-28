@@ -41,27 +41,9 @@
     }
   ],
   "post-processors": [
-    [
-      {
-        "type": "vagrant",
-        "keep_input_artifact": false
-      },
-      {
-        "type": "atlas",
-        "only": [
-          "virtualbox-iso"
-        ],
-        "artifact": "rodamber/nixos-16.03-x86_64",
-        "artifact_type": "vagrant.box",
-        "metadata": {
-          "provider": "virtualbox",
-            "description": "A minimal NixOS build based on the latest-iso-minimal-x86_64-linux iso.\n\nSee https://github.com/rodamber/nixbox for project details.\n"
-        }
-      }
-    ]
-  ],
-  "push": {
-    "name": "rodamber/nixos-x86_64",
-    "vcs": true
-  }
+    {
+      "type": "vagrant",
+      "keep_input_artifact": false
+    }
+  ]
 }
