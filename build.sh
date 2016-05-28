@@ -4,7 +4,7 @@ ISO_URL="https://nixos.org/releases/nixos/latest-iso-minimal-x86_64-linux"
 ISO_CHECKSUM=$(wget -qO- https://nixos.org/releases/nixos/latest-iso-minimal-x86_64-linux-sha256)
 
 if [ $? -ne 0 ]; then
-    echo "Error: could not download SHA-256";
+    echo "Error: could not download checksum";
     exit 1;
 fi
 
