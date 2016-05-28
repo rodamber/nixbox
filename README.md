@@ -12,7 +12,7 @@ Usage
 -----
 
 ```
-vagrant init rodamber/nixos-16.03-x86_64
+vagrant init rodamber/nixos-latest-iso-minimal-x86_64
 ```
 
 Also have a look at the accompanying nixos vagrant plugin:
