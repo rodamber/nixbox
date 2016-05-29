@@ -8,16 +8,6 @@ It is a minimal NixOS build based on the
 [latest-iso-minimal-x86_64-linux iso](https://nixos.org/releases/nixos/latest-iso-minimal-x86_64-linux)
 provided [here](https://nixos.org/nixos/download.html).
 
-Usage
------
-
-```
-vagrant init rodamber/nixos-latest-iso-minimal-x86_64
-```
-
-Also have a look at the accompanying nixos vagrant plugin:
-https://github.com/zimbatm/vagrant-nixos-plugin
-
 Building the images
 -------------------
 
